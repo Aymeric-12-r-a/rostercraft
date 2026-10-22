@@ -6,6 +6,10 @@ export type TrialForm = {
 
 export type TrialErrors = Partial<Record<keyof TrialForm, string>>;
 
+export const DEFAULT_TRIAL_DAYS = 14;
+export const MIN_TRIAL_DAYS = 7;
+export const MAX_TRIAL_DAYS = 30;
+
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]*$/;
 
 export function validateTrialForm(form: TrialForm): TrialErrors {
@@ -26,6 +30,10 @@ export function firstName(fullName: string): string {
   return fullName.trim().split(/\s+/)[0];
 }
 
-export function trialDays(value: string | undefined = import.meta.env.VITE_TRIAL_DAYS): string | undefined {
-  return value;
+export function trialDays(value: string | undefined = import.meta.env.VITE_TRIAL_DAYS): number {
+  const days = Number(value);
+  if (!value || !Number.isInteger(days) || days < MIN_TRIAL_DAYS || days > MAX_TRIAL_DAYS) {
+    return DEFAULT_TRIAL_DAYS;
+  }
+  return days;
 }

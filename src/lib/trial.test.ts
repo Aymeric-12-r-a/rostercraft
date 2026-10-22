@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { firstName, validateTrialForm } from './trial';
+import { firstName, trialDays, validateTrialForm } from './trial';
 
 describe('validateTrialForm', () => {
   it('accepts a complete form', () => {
@@ -16,5 +16,20 @@ describe('validateTrialForm', () => {
 describe('firstName', () => {
   it('keeps the first word of the full name', () => {
     expect(firstName('  Anna Petit ')).toBe('Anna');
+  });
+});
+
+describe('trialDays', () => {
+  it('reads a length between 7 and 30 days', () => {
+    expect(trialDays('7')).toBe(7);
+    expect(trialDays('30')).toBe(30);
+  });
+
+  it('falls back to 14 days when the value is missing or invalid', () => {
+    expect(trialDays(undefined)).toBe(14);
+    expect(trialDays('')).toBe(14);
+    expect(trialDays('abc')).toBe(14);
+    expect(trialDays('6')).toBe(14);
+    expect(trialDays('31')).toBe(14);
   });
 });
