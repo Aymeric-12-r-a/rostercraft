@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BASE_PRICE, MAX_LOCATIONS, VOLUME_PRICE, monthlyPrice, type Billing } from '../lib/pricing';
+import { BASE_PRICE, MAX_LOCATIONS, VOLUME_PRICE, monthlyPrice, yearlyPrice, type Billing } from '../lib/pricing';
 
 function euros(amount: number): string {
   return `€${amount.toFixed(2)}`;
@@ -73,7 +73,7 @@ export default function Pricing() {
         ) : (
           <p className="result">
             <strong>{euros(perMonth)}</strong> per month
-            {billing === 'annual' && <span>, billed {euros(perMonth * 12)} per year</span>}
+            {billing === 'annual' && <span>, billed {euros(yearlyPrice(locations, billing))} per year</span>}
           </p>
         )}
       </div>

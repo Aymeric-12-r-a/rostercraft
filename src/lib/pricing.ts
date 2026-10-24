@@ -16,3 +16,7 @@ export function monthlyPrice(locations: number, billing: Billing): number {
   const atVolumePrice = Math.max(locations - LOCATIONS_AT_BASE_PRICE, 0) * VOLUME_PRICE;
   return roundToCents((atBasePrice + atVolumePrice) * (1 - discount));
 }
+
+export function yearlyPrice(locations: number, billing: Billing): number {
+  return roundToCents(monthlyPrice(locations, billing) * 12);
+}
