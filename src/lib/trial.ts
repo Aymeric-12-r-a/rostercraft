@@ -10,7 +10,7 @@ export const DEFAULT_TRIAL_DAYS = 14;
 export const MIN_TRIAL_DAYS = 7;
 export const MAX_TRIAL_DAYS = 30;
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]*$/;
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function validateTrialForm(form: TrialForm): TrialErrors {
   const errors: TrialErrors = {};
