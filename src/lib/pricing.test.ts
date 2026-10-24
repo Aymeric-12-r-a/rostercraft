@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { monthlyPrice } from './pricing';
+import { monthlyPrice, yearlyPrice } from './pricing';
 
 describe('monthlyPrice', () => {
   it('charges 29 per location per month', () => {
@@ -18,5 +18,12 @@ describe('monthlyPrice', () => {
   it('applies the annual discount once above 10 locations', () => {
     expect(monthlyPrice(11, 'annual')).toBe(251.2);
     expect(monthlyPrice(12, 'annual')).toBe(270.4);
+  });
+});
+
+describe('yearlyPrice', () => {
+  it('bills twelve months of the annual price', () => {
+    expect(yearlyPrice(1, 'annual')).toBe(278.4);
+    expect(yearlyPrice(12, 'annual')).toBe(3244.8);
   });
 });
