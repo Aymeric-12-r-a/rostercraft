@@ -1,22 +1,18 @@
 import { describe, expect, it } from 'vitest';
-import { monthlyPrice } from './pricing';
+import { monthlyPriceInCents } from './pricing';
 
-describe('monthlyPrice', () => {
-  it('charges 29 per location per month', () => {
-    expect(monthlyPrice(1, 'monthly')).toBe(29);
-    expect(monthlyPrice(10, 'monthly')).toBe(290);
+describe('monthlyPriceInCents', () => {
+  it('charges 2900 cents per location per month', () => {
+    expect(monthlyPriceInCents(1, 'monthly')).toBe(2900);
+    expect(monthlyPriceInCents(10, 'monthly')).toBe(29000);
   });
 
-  it('charges 24 for each location from the 11th', () => {
-    expect(monthlyPrice(11, 'monthly')).toBe(314);
+  it('charges 2400 cents for each location from the 11th', () => {
+    expect(monthlyPriceInCents(11, 'monthly')).toBe(31400);
   });
 
-  it('takes 20% off with annual billing', () => {
-    expect(monthlyPrice(1, 'annual')).toBe(23.2);
-  });
-
-  it('applies the annual discount once above 10 locations', () => {
-    expect(monthlyPrice(11, 'annual')).toBe(251.2);
-    expect(monthlyPrice(12, 'annual')).toBe(270.4);
+  it('takes 20% off the monthly total with annual billing', () => {
+    expect(monthlyPriceInCents(1, 'annual')).toBe(2320);
+    expect(monthlyPriceInCents(12, 'annual')).toBe(27040);
   });
 });
