@@ -6,13 +6,9 @@ export const LOCATIONS_AT_BASE_PRICE = 10;
 export const ANNUAL_DISCOUNT = 0.2;
 export const MAX_LOCATIONS = 50;
 
-function roundToCents(amount: number): number {
-  return Math.round(amount * 100) / 100;
-}
-
-export function monthlyPrice(locations: number, billing: Billing): number {
+export function monthlyPriceInCents(locations: number, billing: Billing): number {
   const discount = billing === 'annual' ? ANNUAL_DISCOUNT : 0;
-  const atBasePrice = Math.min(locations, LOCATIONS_AT_BASE_PRICE) * BASE_PRICE;
-  const atVolumePrice = Math.max(locations - LOCATIONS_AT_BASE_PRICE, 0) * VOLUME_PRICE;
-  return roundToCents((atBasePrice + atVolumePrice) * (1 - discount));
+  const atBasePrice = Math.min(locations, LOCATIONS_AT_BASE_PRICE) * BASE_PRICE * 100;
+  const atVolumePrice = Math.max(locations - LOCATIONS_AT_BASE_PRICE, 0) * VOLUME_PRICE * 100;
+  return Math.round((atBasePrice + atVolumePrice) * (1 - discount));
 }
