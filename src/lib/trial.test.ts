@@ -19,6 +19,15 @@ describe('firstName', () => {
   });
 });
 
+describe('work email', () => {
+  it('refuses an email without a domain or an extension', () => {
+    for (const email of ['anna@', 'anna@bistro', '@bistro-lune.fr']) {
+      const errors = validateTrialForm({ fullName: 'Anna Petit', email, locations: '1' });
+      expect(errors.email).toBe('Enter a valid work email.');
+    }
+  });
+});
+
 describe('trialDays', () => {
   it('reads a length between 7 and 30 days', () => {
     expect(trialDays('7')).toBe(7);
