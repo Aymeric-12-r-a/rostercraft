@@ -34,7 +34,7 @@ Copy `.env.example` to `.env.local` and fill in the values.
 As a restaurant manager, I want to see how many hours of scheduling Rostercraft saves me each month, so that I know whether a trial is worth it.
 
 - With 1 to 500 employees, the estimator shows the hours saved per month: 12 minutes saved per employee per week, 4 weeks per month, rounded to one decimal.
-- With an empty field, 0, a negative number or more than 500, the estimator asks for a number of employees between 1 and 500 and shows no result.
+- With an empty field, 0, a negative number or more than 500, the estimator shows "Enter a number of employees between 1 and 500." and no result.
 
 ### 2. Pricing
 
@@ -44,17 +44,17 @@ As the owner of several shops, I want to see the price for my number of location
 - Each location from the 11th costs €24 per month.
 - Annual billing takes 20% off the monthly total; the page shows the price per month and the total per year.
 - Prices show two decimals.
-- From 1 to 50 locations the page shows a price; above 50 it invites the visitor to contact sales.
+- From 1 to 50 locations the page shows a price; above 50 it shows "More than 50 locations? Contact sales." and no price.
 
 ### 3. Trial form
 
 As a visitor, I want to start a free trial in a few seconds, so that I can try Rostercraft with my team.
 
-- The full name is required, with at least 2 characters.
-- The work email is required and valid: a name, `@`, a domain and an extension, such as `anna@bistro-lune.fr`.
-- The number of locations is required.
+- The full name is required, with at least 2 characters. Otherwise: "Enter your full name."
+- The work email is required and valid: a name, `@`, a domain and an extension, such as `anna@bistro-lune.fr`. Otherwise: "Enter a valid work email."
+- The number of locations is required. Otherwise: "Choose a number of locations."
 - Each error shows next to its field; nothing is sent while an error remains.
-- On success, the page thanks the visitor by first name and gives the length of the trial.
+- On success, the page thanks the visitor by first name and gives the length of the trial, such as "Thanks Anna, your 14-day free trial is ready."
 
 ### 4. Trial length
 
